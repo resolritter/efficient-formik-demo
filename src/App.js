@@ -49,12 +49,11 @@ const useRenderCounter = (targetId) => {
       if (!target) return
 
       target.innerHTML = `Field ${targetId} has been re-rendered ${syncCount.current} times`
+      clearInterval(pollUntilElementAppears.current)
       return true
     }
     if (!setRenderingInformation()) {
-      if (pollUntilElementAppears.current) {
-        clearInterval(pollUntilElementAppears.current)
-      }
+      clearInterval(pollUntilElementAppears.current)
 
       pollUntilElementAppears.current = setInterval(
         setRenderingInformation,
