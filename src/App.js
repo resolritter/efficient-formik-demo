@@ -29,14 +29,13 @@ const formikFieldComparison = (prevProps, nextProps) => {
       `Field ${prevProps.field.name} has changed, here's the diff`,
       differences,
     )
-    return false
   }
 
-  return true
+  return !isChanged
 }
 
 const useRenderCounter = (targetId) => {
-  const count = React.useRef(-1)
+  const count = React.useRef(0)
   count.current = count.current + 1
   const syncCount = React.useRef(0)
   const pollUntilElementAppears = React.useRef()
